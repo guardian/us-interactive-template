@@ -3,13 +3,13 @@ var pageUrl = window.location.href.split('#')[0],
 
 module.exports =  {
     init: function() {
-        this.setLinks('.texts-share');
+        this.setLinks('.uit-share');
     },
 
     setLinks: function(parent) {
-        $(parent + ' .texts-share__button--twitter a').attr('href', this.getTwitterLink());
-        $(parent + ' .texts-share__button--facebook a').attr('href', this.getFacebookLink());
-        $(parent + ' .texts-share__button--email a').attr('href', this.getEmailLink());
+        $(parent + ' .uit-share__button--twitter a').attr('href', this.getTwitterLink());
+        $(parent + ' .uit-share__button--facebook a').attr('href', this.getFacebookLink());
+        $(parent + ' .uit-share__button--email a').attr('href', this.getEmailLink());
     },
 
     getTwitterLink: function() {
