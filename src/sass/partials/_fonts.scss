@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'Guardian Egyptian Web';
+    src: url('https://interactive.guim.co.uk/fonts/guss-webfonts/GHGuardianHeadline/GHGuardianHeadline-Regular.woff2') format('woff2'),
+         url('https://interactive.guim.co.uk/fonts/guss-webfonts/GHGuardianHeadline/GHGuardianHeadline-Regular.woff') format('woff'),
+         url('https://interactive.guim.co.uk/fonts/guss-webfonts/GHGuardianHeadline/GHGuardianHeadline-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+
+@font-face {
+    font-family: 'Guardian Egyptian Web';
+    src: url('https://interactive.guim.co.uk/fonts/guss-webfonts/GHGuardianHeadline/GHGuardianHeadline-Bold.woff2') format('woff2'),
+         url('https://interactive.guim.co.uk/fonts/guss-webfonts/GHGuardianHeadline/GHGuardianHeadline-Bold.woff') format('woff'),
+         url('https://interactive.guim.co.uk/fonts/guss-webfonts/GHGuardianHeadline/GHGuardianHeadline-Bold.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+@font-face {
+    font-family: 'Guardian Text Egyptian Web';
+    src: url('https://interactive.guim.co.uk/fonts/latin1/Guardian Text Egyp Web-Reg.eot');
+    src: url('https://interactive.guim.co.uk/fonts/latin1/Guardian Text Egyp Web-Reg.eot?#iefix') format('embedded-opentype'),
+         url('https://interactive.guim.co.uk/fonts/latin1/Guardian Text Egyp Web-Reg.woff') format('woff'),
+         url('https://interactive.guim.co.uk/fonts/latin1/Guardian Text Egyp Web-Reg.ttf') format('truetype'),
+         url('https://interactive.guim.co.uk/fonts/latin1/Guardian Text Egyp Web-Reg.svg#Guardian Egyp Web-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+@font-face {
+    font-family: 'Guardian Sans Web';
+    src: url('https://interactive.guim.co.uk/fonts/latin1/Guardian Sans Web-Regular.eot');
+    src: url('https://interactive.guim.co.uk/fonts/latin1/Guardian Sans Web-Regular.eot?#iefix') format('embedded-opentype'),
+         url('https://interactive.guim.co.uk/fonts/latin1/Guardian Sans Web-Regular.woff') format('woff'),
+         url('https://interactive.guim.co.uk/fonts/latin1/Guardian Sans Web-Regular.ttf') format('truetype'),
+         url('https://interactive.guim.co.uk/fonts/latin1/Guardian Sans Web-Regular.svg#Guardian Sans Web-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+}

@@ -1,0 +1,7 @@
+<picture>
+    {{#each sources}}
+        <source srcset="{{ url }}" media="(min-width: {{ minSize }}px)">
+        <source srcset="{{ retinaUrl }} " media="(min-width: {{ minSize }}px) and (-webkit-min-device-pixel-ratio: 1.25), (max-width: {{ minSize }}px) and (min-resolution: 120dpi)">
+    {{/each}}
+    <img src="{{ fallback }}" alt="{{ title }}">
+</picture>

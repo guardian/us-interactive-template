@@ -1,0 +1,42 @@
+.texts-share {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+
+    @include mq(desktop) {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+.texts-share__button {
+    height:32px;
+    width: 32px;
+    border-radius: 20px;
+    float: left;
+    margin-right: 4px;
+    border: 1px solid $c-red;
+
+    .svg {
+        fill: $c-red;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+    }
+
+    &:hover {
+        background-color: $c-red;
+
+        .svg {
+            fill: $c-white;
+        }
+    }
+}
+
+.texts--end {
+    .texts-share {
+        display: block;
+    }
+}

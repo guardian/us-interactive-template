@@ -1,0 +1,14 @@
+{
+    "data": {
+        "id": "1M-DxCz4nDhW6XkfGDongvKIXiBPI5YK16vKSTUz-OBU"
+    },
+    "local": {
+        "url": "http://localhost",
+        "port": 8080
+    },
+    "remote": {
+        "url": "https://interactive.guim.co.uk",
+        "path": "atoms/2018/03/parkland-texts",
+        "bucket": "gdn-cdn"
+    }
+}
