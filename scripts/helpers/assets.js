@@ -1,10 +1,10 @@
 var fs = require('fs-extra');
 var handlebars = require('handlebars');
-var partialLoader = require('partials-loader');
 var browserify = require('browserify');
 var stringify = require('stringify');
 var sass = require('node-sass');
 var deasync = require('deasync');
+var glob = require('glob-fs')({ gitignore: true });
 var markdown = require('markdown').markdown;
 
 module.exports = {
@@ -44,10 +44,11 @@ module.exports = {
         fs.removeSync(path + '/main.html');
 
         handlebars.registerHelper('if_eq', function(a, b, opts) {
-            if(a == b) // Or === depending on your needs
+            if (a == b) {
                 return opts.fn(this);
-            else
+            } else {
                 return opts.inverse(this);
+            }
         });
 
         handlebars.registerHelper('marked', function(string) {
@@ -70,17 +71,6 @@ module.exports = {
                 }
 
                 return output;
-        });
-
-        handlebars.registerHelper('getImage', function(url, size) {
-            var crop = url.split('?crop=')[1];
-            var url = url.replace('gutools.co.uk', 'guim.co.uk');
-                url = url.replace('http://', 'https://');
-                url = url.replace('images/', '');
-                url = url.split('?')[0];
-                url = url + '/' + crop + '/' + size + '.jpg';
-
-            return url;
         });
 
         handlebars.registerHelper('if_even', function(conditional, options) {
@@ -106,11 +96,13 @@ module.exports = {
         var html = fs.readFileSync('src/templates/main.html', 'utf8');
         var template = handlebars.compile(html);
 
-        partialLoader.handlebars({
-            template_engine_reference: handlebars, 
-            template_root_directories: './src/templates/',
-            partials_directory_names: ['partials', 'helpers', 'icons', 'drawn'],
-            template_extensions: ['html', 'svg']
+        var partials = glob.readdirSync('src/templates/**/*.*');
+
+        partials.forEach(function(partial) {
+            var name = partial.replace('src/templates/', '').split('.')[0];
+            var template = fs.readFileSync(partial, 'utf8');
+
+            handlebars.registerPartial(name, template);
         });
 
         fs.writeFileSync(path + '/main.html', template(data).replace(/@@assetPath@@/g, absolutePath));
