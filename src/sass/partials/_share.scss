@@ -3,12 +3,6 @@
     padding: 0;
     list-style: none;
     overflow: hidden;
-
-    @include mq(desktop) {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-    }
 }
 
 .texts-share__button {

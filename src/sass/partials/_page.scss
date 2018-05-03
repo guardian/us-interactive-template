@@ -16,7 +16,7 @@ figure.interactive-atom {
     display: block !important;
 }
 
-.element-atom .gs-container {
+.element-atom .texts-container {
     padding-left: 10px;
     padding-right: 10px;
     -webkit-box-sizing: border-box;
@@ -25,96 +25,44 @@ figure.interactive-atom {
 }
 
 @include mq(mobileLandscape) {
-    .element-atom .gs-container {
+    .element-atom .texts-container {
         padding-left: 20px;
         padding-right: 20px;
     }
 }
 
-.gs-container {
+.texts-container {
     position: relative;
     margin: 0 auto;
     padding: 0 10px;
 }
 
 @include mq(mobileLandscape) {
-    .gs-container {
+    .texts-container {
         padding: 0 20px;
     }
 }
 
 @include mq(tablet) {
-    .gs-container {
+    .texts-container {
         max-width: 740px;
     }
 }
 
 @include mq(desktop) {
-    .gs-container {
+    .texts-container {
         max-width: 980px;
     }
 }
 
 @include mq(leftCol) {
-    .gs-container {
+    .texts-container {
         max-width: 1140px;
     }
 }
 
 @include mq(wide) {
-    .gs-container {
+    .texts-container {
         max-width: 1300px;
-    }
-}
-
-.l-side-margins {
-    position: relative;
-    height: auto;
-}
-
-.l-side-margins:before,
-.l-side-margins:after {
-    content: '';
-    position: absolute;
-    z-index: 12;
-    background: transparent;
-    top: 0;
-    height: 100%;
-    width: 0;
-}
-
-@include mq(tablet) {
-    .l-side-margins:before {
-        left: 0;
-    }
-
-    .l-side-margins:after {
-        right: 0;
-    }
-
-    .l-side-margins:before,
-    .l-side-margins:after {
-        width: calc((100% - 740px) / 2);
-    }
-}
-
-@include mq(desktop) {
-    .l-side-margins:before,
-    .l-side-margins:after {
-        width: calc((100% - 980px) / 2);
-    }
-}
-
-@include mq(leftCol) {
-    .l-side-margins:before,
-    .l-side-margins:after {
-        width: calc((100% - 1140px) / 2);
-    }
-}
-
-@include mq(wide) {
-    .l-side-margins:before,
-    .l-side-margins:after {
-        width: calc((100% - 1300px) / 2);
     }
 }
