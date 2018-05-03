@@ -11,24 +11,7 @@ $mq-breakpoints: (
     wide:            1300px
 );
 
-// colours
-$c-blue: #4bc6df;
-$c-pale-blue: #d8e7eb;
-$c-red: #e00714;
-
-// non-colours
-$c-white: #ffffff;
-$c-off-white: #f1f1f1;
-$c-grey: #dfdfdf;
-$c-dark-grey: #999;
-$c-black: #222;
-
-// social
-$c-twitter: #4bc6df;
-$c-facebook: #3067a3;
-
-// other
-$c-ad-grey: #f6f6f6;
+@import "partials/vars";
 
 @import "partials/fonts";
 @import "partials/page";
