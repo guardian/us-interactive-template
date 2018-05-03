@@ -11,6 +11,7 @@ $mq-breakpoints: (
     wide:            1300px
 );
 
+@import "partials/mixins";
 @import "partials/vars";
 @import "partials/fonts";
 @import "partials/page";
