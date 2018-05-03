@@ -1,5 +1,9 @@
 .uit-body {
-    @include dropCap('uit-drop');
+    .uit-drop {
+        @include dropCap(4);
+        font-weight: bold;
+        color: $c-red;
+    }
 
     p {
         @include bodyCopy();
