@@ -1,10 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg class='svg svg--pause' version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
-<title>IconLibrary</title>
-<g>
-	<polygon class="st0" points="18.8,50 6.2,50 6.2,3 9.3,0 18.8,0 	"/>
-	<polygon class="st0" points="43.8,47 40.7,50 31.2,50 31.2,0 43.8,0 	"/>
-</g>
-</svg>
+<svg class='uit-icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M22.66 34.38h-4.69V16.76l1.14-1.13h3.55v18.75zM32.03 33.24l-1.14 1.14h-3.55V15.63h4.69v17.61z"/></svg>

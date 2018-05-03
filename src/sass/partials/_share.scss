@@ -1,19 +1,19 @@
-.texts-share {
+.uit-share {
     margin: 0;
     padding: 0;
     list-style: none;
     overflow: hidden;
 }
 
-.texts-share__button {
-    height:32px;
-    width: 32px;
+.uit-share__button {
+    height: 30px;
+    width: 30px;
     border-radius: 20px;
     float: left;
     margin-right: 4px;
     border: 1px solid $c-red;
 
-    .svg {
+    .uit-icon {
         fill: $c-red;
         width: 100%;
         height: 100%;
@@ -23,14 +23,8 @@
     &:hover {
         background-color: $c-red;
 
-        .svg {
+        .uit-icon {
             fill: $c-white;
         }
-    }
-}
-
-.texts--end {
-    .texts-share {
-        display: block;
     }
 }

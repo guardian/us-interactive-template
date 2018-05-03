@@ -1,8 +1,35 @@
-.texts {
+.uit {
     overflow: hidden;
 }
 
-.texts-content {
+.uit-container {
+    position: relative;
+    margin: 0 auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+
+    @include mq(mobileLandscape) {
+        padding: 0 20px;
+    }
+
+    @include mq(tablet) {
+        max-width: 740px;
+    }
+
+    @include mq(desktop) {
+        max-width: 980px;
+    }
+
+    @include mq(leftCol) {
+        max-width: 1140px;
+    }
+
+    @include mq(wide) {
+        max-width: 1300px;
+    }
+}
+
+.uit-content {
     position: relative;
     max-width: 620px;
 
@@ -22,7 +49,7 @@
             bottom: -12px;
             left: -10px;
             width: 1px;
-            background-color: $c-grey;
+            background-color: $c-light-grey;
         }
     }
 }
