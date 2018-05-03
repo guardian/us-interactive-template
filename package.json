@@ -6,8 +6,8 @@
   "scripts": {
     "compile": "node scripts/compile.js false",
     "deploy": "node scripts/compile.js true",
-    "prelocal": "npm run compile -- local",
-    "local": "node scripts/local.js"
+    "prestart": "npm run compile -- local",
+    "start": "node scripts/local.js"
   },
   "repository": {
     "type": "git",

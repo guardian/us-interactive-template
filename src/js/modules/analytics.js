@@ -1,5 +1,3 @@
-var $ = require('../vendor/jquery.js');
-
 var article = 'A good, short, descriptor of the interactive',
     hasAnalytics = false,
     gaTracker;
