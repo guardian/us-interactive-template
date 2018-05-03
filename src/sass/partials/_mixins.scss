@@ -18,3 +18,15 @@
         line-height: 0.79;
     }
 }
+
+@mixin banding($background-color) {
+    font-family: 'Guardian Egyptian Web';
+    line-height: 1.4;
+
+    &__inner {
+        display: inline;
+        padding-bottom: .1em;
+        background: linear-gradient($background-color, $background-color) no-repeat;
+        box-shadow: 4px 0 0 $background-color, -4px 0 0 $background-color;
+    }
+}

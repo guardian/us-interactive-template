@@ -9,4 +9,10 @@
         @include bodyCopy();
         margin-bottom: 18px;
     }
+
+    .uit-subhead {
+        @include banding($c-yellow);
+        font-size: 28px;
+        font-weight: bold;
+    }
 }
