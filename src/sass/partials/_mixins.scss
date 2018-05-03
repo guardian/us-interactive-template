@@ -7,7 +7,7 @@
 @mixin dropCap($size) {
     display: inline-block;
     float: left;
-    margin-right: .3em;
+    margin-right: $size * .1em;
     font-family: 'Guardian Egyptian Web';
     line-height: .6;
     text-transform: uppercase;
