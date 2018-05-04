@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile": "node scripts/compile.js false",
-    "predeploy": "rm -rf .deploy"
+    "predeploy": "rm -rf .deploy",
     "deploy": "node scripts/compile.js true",
     "prestart": "npm run compile -- local",
     "start": "node scripts/local.js"
