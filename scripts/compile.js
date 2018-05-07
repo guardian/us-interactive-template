@@ -48,5 +48,5 @@ if (specs.deploy === false) {
     fs.emptyDirSync('.deploy');
     fs.copySync(path, '.deploy/' + version);
     fs.writeFileSync('.deploy/' + specs.build, version);
-    deploy();
+    deploy(specs.build);
 }

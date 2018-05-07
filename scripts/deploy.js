@@ -1,4 +1,4 @@
-module.exports = function deploy() {
+module.exports = function deploy(buildVersion) {
     var thingsToUpload = [
         {
             files: 'v/**/*',
@@ -22,6 +22,7 @@ module.exports = function deploy() {
     var filesize = require( 'filesize' );
     var stevedore = require( 'stevedore' );
     var chalk = require( 'chalk' );
+    var request = require('sync-request');
 
     var BUCKET = 'gdn-cdn';
     var config = require( './config.json' );
@@ -46,7 +47,8 @@ module.exports = function deploy() {
     thingsToUpload.forEach( function ( thing ) {
         var files = glob.sync( thing.files, {
             cwd: BASE_DIR,
-            nodir: true
+            nodir: true,
+            ignore: 'v/**/index.html'
         });
 
         files.forEach( function ( file ) {
@@ -56,6 +58,8 @@ module.exports = function deploy() {
             });
         });
     });
+
+    console.log('');
 
     var inFlight = 0;
     var loader;
@@ -76,7 +80,8 @@ module.exports = function deploy() {
 
             if ( !inFlight ) {
                 loader.stop();
-                console.log( '\nupload complete! type ' + chalk.cyan( 'npm run open' ) + ' to view the project' );
+                console.log( '\n\nUpload complete!');
+                getServerResponse();
             }
 
             return;
@@ -109,6 +114,11 @@ module.exports = function deploy() {
             inFlight -= 1;
             uploadNextItem();
         });
+    }
+
+    function getServerResponse() {
+        var res = request('GET', 'http://interactive.guim.co.uk/' + config.remote.path + '/' + buildVersion + '.log');
+        console.log('\n' + res.getBody().toString());
     }
 
     function pad ( str, len ) {

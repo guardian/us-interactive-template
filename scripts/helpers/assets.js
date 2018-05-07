@@ -21,7 +21,7 @@ module.exports = {
             }
             fs.writeFileSync(path + '/' + fileName + '.js', buf.toString().replace(/@@assetPath@@/g, absolutePath));
             isDone = true;
-            console.log('updated ' + fileName + ' js!');
+            console.log('Updated ' + fileName + ' js!');
         });
 
         deasync.loopWhile(function() {
@@ -43,7 +43,7 @@ module.exports = {
             }
             fs.writeFileSync(path + '/main.css', result.css.toString('utf8').replace(/@@assetPath@@/g, absolutePath));
             isDone = true;
-            console.log('updated css!');
+            console.log('Updated css!');
         });
 
         deasync.loopWhile(function() {
@@ -117,14 +117,14 @@ module.exports = {
         });
 
         fs.writeFileSync(path + '/main.html', template(data).replace(/@@assetPath@@/g, absolutePath));
-        console.log('updated html!');
+        console.log('Updated html!');
     },
 
     static: function(path) {
         fs.emptyDirSync(path + '/assets');
         fs.mkdirsSync(path + '/assets');
         fs.copySync('src/assets', path + '/assets');
-        console.log('updated static assets');
+        console.log('Updated static assets');
     },
 
     preview: function(path, isDeploy, assetPath) {
@@ -143,6 +143,6 @@ module.exports = {
 
         fs.writeFileSync(path + '/index.html', compiled);
 
-        console.log('built page preview');
+        console.log('Built page preview');
     }
 } 
