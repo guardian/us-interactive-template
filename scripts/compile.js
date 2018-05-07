@@ -1,4 +1,3 @@
-// dependancies
 var handlebars = require('handlebars');
 var fs = require('fs-extra');
 var cmd = require('node-cmd');
@@ -33,20 +32,19 @@ if (specs.modified === 'html') {
     assets.js(path, 'app', assetPath);
 } else if (specs.modified === 'css') {
     assets.css(path, assetPath);
+} else if (specs.modified === 'static') {
+    assets.static(path, assetPath)
 } else {
     assets.html(path, assetPath, data);
     assets.css(path, assetPath);
     assets.js(path, 'main', assetPath);
     assets.js(path, 'app', assetPath);
+    assets.static(path);
 }
 
 if (specs.deploy === false) {
     assets.preview(path, specs.deploy, assetPath);
-}
-
-fs.copySync('src/assets', path + '/assets');
-
-if (specs.deploy) {
+} else if (specs.deploy) {
     fs.emptyDirSync('.deploy');
     fs.copySync(path, '.deploy/' + version);
     fs.writeFileSync('.deploy/' + specs.build, version);

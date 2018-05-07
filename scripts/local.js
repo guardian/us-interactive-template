@@ -6,16 +6,20 @@ var config = require('../scripts/config.json');
 
 watch('src', function(file) {
     var fileExt = file.substring(file.lastIndexOf('.') + 1);
+    var isAssets = file.includes('/assets/');
 
-    if (fileExt === 'html' || fileExt === 'svg') {
+    if (isAssets) {
+        console.log('updating static assets');
+        cmd.get('npm run compile -- local static', function(data) { console.log(data); });
+    } else if (fileExt === 'html' || fileExt === 'svg') {
         console.log('updating html');
-        cmd.get('npm run compile -- local preview html', function(data) { console.log(data); });
+        cmd.get('npm run compile -- local html', function(data) { console.log(data); });
     } else if (fileExt === 'scss') {
         console.log('updating css');
-        cmd.get('npm run compile -- local preview css', function(data) { console.log(data); });
+        cmd.get('npm run compile -- local css', function(data) { console.log(data); });
     } else if (fileExt === 'js') {
         console.log('updating js');
-        cmd.get('npm run compile -- local preview js', function(data) { console.log(data); });
+        cmd.get('npm run compile -- local js', function(data) { console.log(data); });
     } else {
         console.log('non-watchable file extension changed :' + fileExt);
     }

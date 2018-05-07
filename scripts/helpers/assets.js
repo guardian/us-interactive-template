@@ -14,14 +14,14 @@ module.exports = {
         var isDone = false;
 
         browserify('./src/js/' + fileName + '.js').transform(stringify, {
-            appliesTo: { includeExtensions: ['.hjs', '.html', '.whatever'] }
+            appliesTo: { includeExtensions: ['.hjs', '.html',] }
         }).bundle(function(err, buf) {
             if (err) {
                 console.log(err);
             }
             fs.writeFileSync(path + '/' + fileName + '.js', buf.toString().replace(/@@assetPath@@/g, absolutePath));
             isDone = true;
-            console.log('updated js!');
+            console.log('updated ' + fileName + ' js!');
         });
 
         deasync.loopWhile(function() {
@@ -107,6 +107,13 @@ module.exports = {
 
         fs.writeFileSync(path + '/main.html', template(data).replace(/@@assetPath@@/g, absolutePath));
         console.log('updated html!');
+    },
+
+    static: function(path) {
+        fs.emptyDirSync(path + '/assets');
+        fs.mkdirsSync(path + '/assets');
+        fs.copySync('src/assets', path + '/assets');
+        console.log('updated static assets');
     },
 
     preview: function(path, isDeploy, assetPath) {
