@@ -32,12 +32,23 @@ module.exports = {
     css: function(path, absolutePath) {
         fs.removeSync(path + '/main.css');
 
-        var css = sass.renderSync({
-            file: 'src/sass/main.scss'
-        }).css.toString('utf8');
+        var isDone = false,
+            css;
 
-        fs.writeFileSync(path + '/main.css', css.replace(/@@assetPath@@/g, absolutePath));
-        console.log('updated css!');
+        sass.render({
+            file: 'src/sass/main.scss'
+        }, function(err, result) {
+            if (err) {
+                console.log(err);
+            }
+            fs.writeFileSync(path + '/main.css', result.css.toString('utf8').replace(/@@assetPath@@/g, absolutePath));
+            isDone = true;
+            console.log('updated css!');
+        });
+
+        deasync.loopWhile(function() {
+            return !isDone;
+        });
     },
 
     html: function(path, absolutePath, data) {
