@@ -22,7 +22,6 @@ module.exports = function deploy(buildVersion) {
     var filesize = require( 'filesize' );
     var stevedore = require( 'stevedore' );
     var chalk = require( 'chalk' );
-    var request = require('sync-request');
 
     var BUCKET = 'gdn-cdn';
     var config = require( './config.json' );
@@ -81,7 +80,6 @@ module.exports = function deploy(buildVersion) {
             if ( !inFlight ) {
                 loader.stop();
                 console.log( '\n\nUpload complete!');
-                getServerResponse();
             }
 
             return;
@@ -114,11 +112,6 @@ module.exports = function deploy(buildVersion) {
             inFlight -= 1;
             uploadNextItem();
         });
-    }
-
-    function getServerResponse() {
-        var res = request('GET', 'http://interactive.guim.co.uk/' + config.remote.path + '/' + buildVersion + '.log');
-        console.log('\n' + res.getBody().toString());
     }
 
     function pad ( str, len ) {
