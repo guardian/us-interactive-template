@@ -1,7 +1,7 @@
 US Interactive Template
 ========================
 
-An alternative templates and toolchain for creating interactive atoms for the Guardian
+An alternative template and toolchain for creating interactive atoms for the Guardian
 
 ## Installation
 
