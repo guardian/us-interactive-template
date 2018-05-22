@@ -19,14 +19,57 @@
     }
 }
 
-@mixin banding($background-color) {
+@mixin banding($c-background) {
     font-family: 'Guardian Egyptian Web';
     line-height: 1.35;
 
     &__inner {
         display: inline;
         padding-bottom: .1em;
-        background: linear-gradient($background-color, $background-color) no-repeat;
-        box-shadow: 4px 0 0 $background-color, -4px 0 0 $background-color;
+        background: linear-gradient($c-background, $c-background) no-repeat;
+        box-shadow: 4px 0 0 $c-background, -4px 0 0 $c-background;
+    }
+}
+
+@mixin button($c-text, $c-background) {
+    position: relative;
+    display: inline-block;
+    font-family: 'Guardian Sans Web';
+    font-size: 16px;
+    color: $c-text;
+    background-color: $c-background;
+    padding: 6px 40px 6px 12px;
+    border-radius: 32px;
+    transition: background 0.4s ease-out;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: none;
+        background-color: darken($c-background, 5%);
+
+        svg {
+            transform: translate(4px, 0);
+        }
+    }
+
+    &:active {
+        color: $c-text;
+    }
+
+    &:focus {
+        text-decoration: none;
+    }
+
+    svg {
+        position: absolute;
+        right: 4px;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        transition: transform 0.4s ease-out;
+
+        path {
+            fill: $c-text;
+        }
     }
 }

@@ -1,18 +1,22 @@
 .uit-body {
-    .uit-drop {
-        @include dropCap(4);
-        font-weight: bold;
-        color: $c-red;
-    }
-
     p {
         @include bodyCopy();
         margin-bottom: 18px;
     }
+}
 
-    .uit-subhead {
-        @include banding($c-yellow);
-        font-size: 28px;
-        font-weight: bold;
-    }
+.uit-drop {
+    @include dropCap(4);
+    font-weight: bold;
+    color: $c-red;
+}
+
+.uit-subhead {
+    @include banding($c-yellow);
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.uit-button {
+    @include button($c-white, $c-red);
 }
