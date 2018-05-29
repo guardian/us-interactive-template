@@ -32,8 +32,7 @@ var file = new static.Server('./.build', {
     }
 });
 
-console.log('serving embedded atom at http://localhost:' + config.local.port + '/index.html')
-console.log('serving the raw atom at http://localhost:' + config.local.port + '/main.html');
+console.log('Preview available at http://localhost:' + config.local.port + '/index.html')
 
 require('http').createServer(function (request, response) {
     request.addListener('end', function () {
