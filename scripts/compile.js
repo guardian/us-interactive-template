@@ -4,7 +4,6 @@ var cmd = require('node-cmd');
 var deploy = require('./deploy.js');
 var config = require('../scripts/config.json');
 var assets = require('../scripts/helpers/assets.js');
-var getData = require('../scripts/helpers/data.js');
 
 var specs =  {
     'deploy': process.argv.slice(2)[0] == 'true' ? true : false,
