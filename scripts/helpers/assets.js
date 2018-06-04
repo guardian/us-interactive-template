@@ -19,7 +19,7 @@ module.exports = {
             if (err) {
                 console.log(err);
             }
-            fs.writeFileSync(path + '/' + fileName + '.js', buf.toString().replace(/@@assetPath@@/g, absolutePath));
+            fs.writeFileSync(path + '/' + fileName + '.js', buf.toString().replace(/\{\{ path \}\}/g, absolutePath).replace(/\{\{path\}\}/g, absolutePath));
             isDone = true;
             console.log('Updated ' + fileName + ' js!');
         });
@@ -41,7 +41,7 @@ module.exports = {
             if (err) {
                 console.log(err);
             }
-            fs.writeFileSync(path + '/main.css', result.css.toString('utf8').replace(/@@assetPath@@/g, absolutePath));
+            fs.writeFileSync(path + '/main.css', result.css.toString('utf8').replace(/\{\{ path \}\}/g, absolutePath).replace(/\{\{path\}\}/g, absolutePath));
             isDone = true;
             console.log('Updated css!');
         });
@@ -51,7 +51,7 @@ module.exports = {
         });
     },
 
-    html: function(path, absolutePath, data) {
+    html: function(path, data) {
         fs.removeSync(path + '/main.html');
 
         handlebars.registerHelper('if_eq', function(a, b, opts) {
@@ -116,7 +116,7 @@ module.exports = {
             handlebars.registerPartial(name, template);
         });
 
-        fs.writeFileSync(path + '/main.html', template(data).replace(/@@assetPath@@/g, absolutePath));
+        fs.writeFileSync(path + '/main.html', template(data));
         console.log('Updated html!');
     },
 

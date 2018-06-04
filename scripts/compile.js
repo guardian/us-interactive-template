@@ -20,29 +20,29 @@ if (config.data.id !== "") {
 
 var path = '.build/';
 var version = 'v/' + Date.now();
-var assetPath = specs.deploy === false ? 'http://localhost:' + config.local.port : config.remote.url + '/' + config.remote.path + '/' + version;
+    data.path = specs.deploy === false ? 'http://localhost:' + config.local.port : config.remote.url + '/' + config.remote.path + '/' + version;
 
 fs.mkdirsSync(path);
 
 if (specs.modified === 'html') {
-    assets.html(path, assetPath, data);
+    assets.html(path, data);
 } else if (specs.modified === 'js') {
-    assets.js(path, 'main', assetPath);
-    assets.js(path, 'app', assetPath);
+    assets.js(path, 'main', data.path);
+    assets.js(path, 'app', data.path);
 } else if (specs.modified === 'css') {
-    assets.css(path, assetPath);
+    assets.css(path, data.path);
 } else if (specs.modified === 'static') {
-    assets.static(path, assetPath)
+    assets.static(path)
 } else {
-    assets.html(path, assetPath, data);
-    assets.css(path, assetPath);
-    assets.js(path, 'main', assetPath);
-    assets.js(path, 'app', assetPath);
+    assets.html(path, data);
+    assets.css(path, data.path);
+    assets.js(path, 'main', data.path);
+    assets.js(path, 'app', data.path);
     assets.static(path);
 }
 
 if (specs.deploy === false) {
-    assets.preview(path, specs.deploy, assetPath);
+    assets.preview(path, specs.deploy, data.path);
 } else if (specs.deploy) {
     fs.emptyDirSync('.deploy');
     fs.copySync(path, '.deploy/' + version);
