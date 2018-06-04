@@ -80,6 +80,9 @@ module.exports = function deploy(buildVersion) {
             if ( !inFlight ) {
                 loader.stop();
                 console.log( '\n\nUpload complete!');
+
+                var atomPath = 'https://' + (buildVersion === 'preview' ? 'internal.' : '') + 'content.guardianapis.com/atom/interactive/interactives/' + config.remote.path.replace('atoms/', '');
+                console.log( '\nAtom available at ' + atomPath);
             }
 
             return;
