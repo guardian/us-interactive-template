@@ -9,7 +9,8 @@
     "deploy": "node scripts/compile.js true",
     "prestart": "npm run compile -- local",
     "start": "node scripts/local.js",
-    "log": "node scripts/log.js"
+    "log": "node scripts/log.js",
+    "clone": "scripts/mkrepo.sh"
   },
   "repository": {
     "type": "git",
@@ -45,5 +46,3 @@
     "user-home": "^2.0.0"
   }
 }
-
-
