@@ -1,9 +1,22 @@
 // dependancies
 var watch = require('node-watch');
 var cmd = require('node-cmd');
-var static = require('node-static');
 var config = require('../scripts/config.json');
 
+// create server
+var bs = require('browser-sync').create();
+    bs.init({
+        server: './.build',
+        port: config.local.port
+    });
+
+    bs.watch('./.build/*.css', function(event, file) {
+        if (event === 'change') {
+            bs.reload('*.css');
+        }
+    });
+
+// watch src files
 watch('src', function(file) {
     var fileExt = file.substring(file.lastIndexOf('.') + 1);
     var isAssets = file.includes('/assets/');
@@ -25,17 +38,3 @@ watch('src', function(file) {
     }
 });
 
-var file = new static.Server('./.build', {
-    'cache': 0,
-    'headers': {
-        'Access-Control-Allow-Origin': '*'
-    }
-});
-
-console.log('Preview available at http://localhost:' + config.local.port + '/index.html')
-
-require('http').createServer(function (request, response) {
-    request.addListener('end', function () {
-        file.serve(request, response);
-    }).resume();
-}).listen(config.local.port);
