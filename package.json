@@ -43,6 +43,7 @@
     "stevedore": "^0.1.4",
     "stringify": "^5.1.0",
     "sync-request": "^3.0.1",
+    "uglify-js": "^3.4.7",
     "user-home": "^2.0.0"
   }
 }

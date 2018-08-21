@@ -27,8 +27,8 @@ fs.mkdirsSync(path);
 if (specs.modified === 'html') {
     assets.html(path, data);
 } else if (specs.modified === 'js') {
-    assets.js(path, 'main', data.path);
-    assets.js(path, 'app', data.path);
+    assets.js(path, 'main', data.path, specs.deploy);
+    assets.js(path, 'app', data.path, specs.deploy);
 } else if (specs.modified === 'css') {
     assets.css(path, data.path);
 } else if (specs.modified === 'static') {
@@ -36,8 +36,8 @@ if (specs.modified === 'html') {
 } else {
     assets.html(path, data);
     assets.css(path, data.path);
-    assets.js(path, 'main', data.path);
-    assets.js(path, 'app', data.path);
+    assets.js(path, 'main', data.path, specs.deploy);
+    assets.js(path, 'app', data.path, specs.deploy);
     assets.static(path);
 }
 

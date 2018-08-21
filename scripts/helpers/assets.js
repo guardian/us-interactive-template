@@ -6,9 +6,10 @@ var sass = require('node-sass');
 var deasync = require('deasync');
 var glob = require('glob-fs')({ gitignore: true });
 var markdown = require('markdown').markdown;
+var UglifyJS = require('uglify-js');
 
 module.exports = {
-    js: function(path, fileName, absolutePath) {
+    js: function(path, fileName, absolutePath, isDeploy) {
         fs.removeSync(path + '/' + fileName + '.js');
 
         var isDone = false;
@@ -19,7 +20,15 @@ module.exports = {
             if (err) {
                 console.log(err);
             }
-            fs.writeFileSync(path + '/' + fileName + '.js', buf.toString().replace(/\{\{ path \}\}/g, absolutePath).replace(/\{\{path\}\}/g, absolutePath));
+
+            var compiledJS = buf.toString();
+                compiledJS = compiledJS.replace(/\{\{ path \}\}/g, absolutePath).replace(/\{\{path\}\}/g, absolutePath)
+
+            if (isDeploy) {
+                compiledJS = UglifyJS.minify(compiledJS);
+            }
+
+            fs.writeFileSync(path + '/' + fileName + '.js', compiledJS);
             isDone = true;
             console.log('Updated ' + fileName + ' js!');
         });
