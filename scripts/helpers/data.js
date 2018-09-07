@@ -6,9 +6,7 @@ var config = require('../config.json');
 var userHome = require('user-home');
 var keys = require(userHome + '/.gu/interactives.json');
 
-var json,
-    data = {regions: {}},
-    conferences = [];
+var data;
 
 function fetchData(callback) {
     gsjson({
@@ -26,9 +24,14 @@ function fetchData(callback) {
     });
 }
 
-function setSheetNames(data) {
-    data = {
-        'events': data[0]
+function sortResults(data) {
+    if (data.length === 0) {
+        data = data[0]
+    } else {
+        data = {
+            'sheet1': data[0],
+            'sheet2': data[1]
+        }
     }
 
     return data;
@@ -39,7 +42,7 @@ module.exports = function getData() {
 
     fetchData(function(result) {
         data = result;
-        data = setSheetNames(data);
+        data = sortResults(data);
 
         isDone = true;
     });
