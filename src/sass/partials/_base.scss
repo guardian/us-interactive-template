@@ -35,11 +35,11 @@
     max-width: 620px;
 
     @include mq(leftCol) {
-        margin-left: 140px;
+        margin-left: 160px;
     }
 
     @include mq(wide) {
-        margin-left: 220px;
+        margin-left: 240px;
     }
 
     &:before {
