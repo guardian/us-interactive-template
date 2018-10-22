@@ -4,6 +4,16 @@
         margin-bottom: 18px;
     }
 
+    p a {
+        color: $c-red;
+        border-bottom: 1px solid mix($c-red, $c-white, 20%);
+        text-decoration: none;
+
+        &:hover {
+            border-bottom-color: $c-red;
+        }
+    }
+
     .uit-content {
         padding-bottom: 12px;
     }
