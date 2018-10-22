@@ -1,5 +1,7 @@
 .uit-related {
     position: relative;
+    background-color: $c-white;
+    padding-bottom: 24px;
 }
 
 .uit-related__header {
@@ -14,6 +16,7 @@
 }
 
 .uit-related__title {
+    margin: 0;
     font-family: 'Guardian Egyptian Web';
     font-size: 22px;
     line-height: 1.1;
@@ -64,9 +67,17 @@
     color: $c-black;
     border-top: 1px solid $c-red;
     width: calc(50% - 10px);
+    margin-bottom: 12px;
+    background-color: $c-off-white;
+    text-decoration: none;
 
     @include mq(tablet) {
         width: calc(25% - 15px);
+    }
+
+    &:hover {
+        text-decoration: none;
+        background-color: $c-light-grey;
     }
 }
 
@@ -83,11 +94,9 @@
     font-size: 20px;
     font-weight: 500;
     line-height: 1.2;
-    background-color: $c-off-white;
 
     &:hover {
         text-decoration: none;
-        background-color: $c-light-grey;
     }
 }
 
