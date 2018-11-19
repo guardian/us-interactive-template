@@ -1,8 +1,9 @@
 var pageUrl = window.location.href.split('#')[0],
-    shareCopy = 'What a cool article #Article';
+    shareCopy = $('meta[property=og\\:title]').attr('content');
 
 module.exports =  {
     init: function() {
+        console.log(shareCopy);
         this.setLinks('.uit-share');
     },
 

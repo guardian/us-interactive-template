@@ -3,7 +3,13 @@
     padding: 0;
     list-style: none;
     overflow: hidden;
+
+    .ios &,
+    .android & {
+        display: none;
+    }
 }
+
 
 .uit-share__button {
     height: 30px;
