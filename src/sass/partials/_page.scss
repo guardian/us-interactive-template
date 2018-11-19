@@ -20,3 +20,13 @@ figure.interactive-atom {
         margin: 0;
     }
 }
+
+// fixes font issues in headers
+.pillar-link {
+    font-weight: 700;
+}
+
+// shows footer
+.l-footer {
+    display: block !important;
+}
