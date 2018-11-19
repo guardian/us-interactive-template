@@ -22,6 +22,7 @@ module.exports = function deploy(buildVersion) {
     var filesize = require( 'filesize' );
     var stevedore = require( 'stevedore' );
     var chalk = require( 'chalk' );
+    var emojic = require("emojic");
 
     var BUCKET = 'gdn-cdn';
     var config = require( './config.json' );
@@ -104,7 +105,7 @@ module.exports = function deploy(buildVersion) {
             options[ header ] = item.headers[ header ];
         });
 
-        console.log( '* %s : %s', pad( filesize( data.length ), 12 ), item.file );
+        console.log( '%s %s : %s', checkFileSize(data.length, item.file) + ' ', pad( filesize( data.length ), 12 ), item.file );
 
         s3.putObject( options, function ( err ) {
             if ( err ) {
@@ -120,5 +121,23 @@ module.exports = function deploy(buildVersion) {
     function pad ( str, len ) {
         while ( str.length < len ) str += ' ';
         return str;
+    }
+
+    function checkFileSize(fileSize, fileName) {
+        if (fileName.includes('main.js') || fileName.includes('main.html') || fileName.includes('main.css')) {
+            if (fileSize > 100000) {
+                return emojic.x;
+            } else if (fileSize > 80000) {
+                return emojic.warning;
+            }
+        }
+
+        if (fileSize > 1500000) {
+            return emojic.x;
+        } else if (fileSize > 1000000) {
+            return emojic.warning;
+        }
+
+        return emojic.whiteCheckMark
     }
 }
