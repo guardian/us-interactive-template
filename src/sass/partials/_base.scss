@@ -15,6 +15,8 @@
 
     @include mq(tablet) {
         max-width: 740px;
+        border-left: 1px solid $c-light-grey;
+        border-right: 1px solid $c-light-grey;
     }
 
     @include mq(desktop) {

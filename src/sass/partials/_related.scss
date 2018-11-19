@@ -1,7 +1,14 @@
 .uit-related {
     position: relative;
     background-color: $c-white;
-    padding-bottom: 24px;
+
+    .uit-container {
+        padding-bottom: 24px;
+
+        @include mq(tablet) {
+            border-top: 1px solid $c-light-grey;
+        }
+    }
 }
 
 .uit-related__header {
@@ -9,6 +16,10 @@
     clear: both;
     margin-bottom: 12px;
     border-top: 1px solid $c-light-grey;
+
+    @include mq(tablet) {
+        border-top: none;
+    }
 
     @include mq(leftCol) {
         margin-bottom: 9px;
@@ -84,7 +95,7 @@
 .uit-related__image {
     width: 100%;
     display: block;
-    background-color: $c-light-grey; 
+    background-color: $c-light-grey;
 }
 
 .uit-related__link {
