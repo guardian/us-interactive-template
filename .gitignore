@@ -8,3 +8,4 @@ yarn.lock
 .sass-cache/
 keys.json
 npm-debug.log
+package-lock.json
