@@ -1,7 +1,7 @@
 {
-  "name": "explainers",
+  "name": "us-interactive-template",
   "version": "1.0.0",
-  "description": "Guardian Explainers",
+  "description": "US Interactive Template",
   "main": "index.js",
   "scripts": {
     "compile": "node scripts/compile.js false",
@@ -10,7 +10,8 @@
     "prestart": "npm run compile -- local",
     "start": "node scripts/local.js",
     "log": "node scripts/log.js",
-    "clone": "scripts/mkrepo.sh"
+    "clone": "scripts/mkrepo.sh",
+    "postinstall": "node scripts/post-install.js"
   },
   "repository": {
     "type": "git",
