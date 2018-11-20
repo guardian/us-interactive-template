@@ -8,32 +8,28 @@ var glob = require('glob-fs')({ gitignore: true });
 var markdown = require('markdown').markdown;
 var UglifyJS = require('uglify-js');
 
+var rollup = require('rollup');
+
 module.exports = {
     js: function(path, fileName, absolutePath, isDeploy) {
         fs.removeSync(path + '/' + fileName + '.js');
+        let isDone = false;
 
-        var isDone = false;
+        (async function () {
+            var bundle = await rollup.rollup({
+                input: './src/js/' + fileName + '.js'
+            });
 
-        browserify('./src/js/' + fileName + '.js').transform(stringify, {
-            appliesTo: { includeExtensions: ['.hjs', '.html',] }
-        }).bundle(function(err, buf) {
-            if (err) {
-                console.log(err);
-            }
+            await bundle.write({
+                dir: path,
+                file: fileName + '.js',
+                format: 'iife'
+            });
 
-            var compiledJS = buf.toString();
-                compiledJS = compiledJS.replace(/\{\{ path \}\}/g, absolutePath).replace(/\{\{path\}\}/g, absolutePath)
-
-            if (isDeploy) {
-                compiledJS = UglifyJS.minify(compiledJS).code;
-            }
-
-            fs.writeFileSync(path + '/' + fileName + '.js', compiledJS);
             isDone = true;
-            console.log('Updated ' + fileName + ' js!');
-        });
+        })()
 
-        deasync.loopWhile(function() {
+        deasync.loopWhile(() => {
             return !isDone;
         });
     },
@@ -150,8 +146,8 @@ module.exports = {
         var guardianTemplate = handlebars.compile(guardianHtml);
 
         var compiled = guardianTemplate({
-            'html': fs.readFileSync(path + '/main.html'),
-            'js': fs.readFileSync(path + '/main.js')
+            'html': fs.readFileSync(path + 'main.html'),
+            'js': fs.readFileSync(path + 'main.js')
         });
 
         if (isDeploy) {
@@ -163,4 +159,4 @@ module.exports = {
 
         console.log('Built page preview');
     }
-} 
+}
