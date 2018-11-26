@@ -1,8 +1,8 @@
-var article = 'A good, short, descriptor of the interactive',
-    hasAnalytics = false,
-    gaTracker;
+const article = 'A good\, short\, descriptor of the interactive';
+let hasAnalytics = false;
+let gaTracker;
 
-module.exports =  {
+export default {
     init: function() {
         this.checkForAnalytics();
     },

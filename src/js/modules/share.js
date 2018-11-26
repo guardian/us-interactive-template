@@ -3,7 +3,6 @@ const pageUrl = window.location.href.split('#')[0],
 
 export default {
     init: function() {
-        console.log(shareCopy);
         this.setLinks('.uit-share');
     },
 
