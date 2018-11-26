@@ -30,7 +30,7 @@
     .uit-ad__wrapper {
         width: 300px;
         height: 280px; // + 30px for the label
-        background-color: red;
+        background-color: $c-yellow;
         display: inline-block;
 
         &:before {
