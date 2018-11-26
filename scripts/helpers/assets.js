@@ -1,13 +1,9 @@
 var fs = require('fs-extra');
 var handlebars = require('handlebars');
-var browserify = require('browserify');
-var stringify = require('stringify');
 var sass = require('node-sass');
 var deasync = require('deasync');
 var glob = require('glob-fs')({ gitignore: true });
 var markdown = require('markdown').markdown;
-var UglifyJS = require('uglify-js');
-
 var rollup = require('rollup');
 var resolve = require('rollup-plugin-node-resolve');
 var minify = require('rollup-plugin-babel-minify');

@@ -18,10 +18,9 @@ module.exports = function deploy(buildVersion) {
     var fs = require( 'fs' );
     var mime = require( 'mime' );
     var AWS = require( 'aws-sdk' );
-    var glob = require( 'glob' );
+    var glob = require( 'glob' ); // this should probably use glob-fs at some point if possible
     var filesize = require( 'filesize' );
     var stevedore = require( 'stevedore' );
-    var chalk = require( 'chalk' );
     var emojic = require("emojic");
 
     var BUCKET = 'gdn-cdn';

@@ -25,11 +25,7 @@
   "homepage": "https://github.com/guardian/podcards#readme",
   "devDependencies": {
     "aws-sdk": "^2.5.0",
-    "babel-core": "^6.26.3",
     "browser-sync": "^2.24.6",
-    "browserify": "^13.1.1",
-    "chalk": "^1.1.3",
-    "console-emoji": "0.0.2",
     "deasync": "^0.1.9",
     "emojic": "^1.1.14",
     "filesize": "^3.3.0",
@@ -51,7 +47,6 @@
     "stevedore": "^0.1.4",
     "stringify": "^5.1.0",
     "sync-request": "^3.0.1",
-    "uglify-js": "^3.4.7",
     "user-home": "^2.0.0"
   }
 }
