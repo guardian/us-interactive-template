@@ -80,6 +80,13 @@ module.exports = {
             return markdown.toHTML(string);
         });
 
+        var adId = 0;
+
+        handlebars.registerHelper('adId', function(context, options) {
+            adId++;
+            return adId;
+        })
+
         handlebars.registerHelper('markedCap', function(string) {
             var markedIntro = markdown.toHTML(string);
             var intro = markedIntro.slice(3);

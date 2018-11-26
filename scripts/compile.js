@@ -21,6 +21,7 @@ if (config.data.id !== "") {
 var path = '.build/';
 var version = 'v/' + Date.now();
     data.path = specs.deploy === false ? 'http://localhost:' + config.local.port : config.remote.url + '/' + config.remote.path + '/' + version;
+    data.isLocal = !specs.deploy;
 
 fs.mkdirsSync(path);
 

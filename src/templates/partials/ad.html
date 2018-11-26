@@ -1,0 +1,31 @@
+{{#if banner}}
+    <div class='uit-ad uit-ad--desktop {{#if isLocal}}uit-ad--placeholder{{/if}}'>
+        <div class='uit-ad__wrapper'>
+            <div id='dfp-ad__{{ id }}'
+                class='js-ad-slot ad-slot ad-slot--banner-ad ad-slot--banner-ad-desktop'
+                data-link-name="ad slot banner"
+                data-name="banner"
+                data-tablet="1,1|2,2|728,90"
+                data-desktop="1,1|2,2|88,70|728,90|940,230|900,250|970,250"></div>
+        </div>
+    </div>
+    <div class='uit-ad uit-ad--mobile {{#if isLocal}}uit-ad--placeholder{{/if}}'>
+        <div class='uit-ad__wrapper'>
+            <div id='dfp-ad--inline{{ id }}Mobile'
+                class='js-ad-slot ad-slot ad-slot--inline ad-slot--inline{{ id }}'
+                data-link-name='ad slot inline{{ id }}Mobile'
+                data-name='inline{{ id }}Mobile'
+                data-mobile="1,1|2,2|300,250|fluid"></div>
+        </div>
+    </div>
+{{else}}
+    <div class='uit-ad {{#if isLocal}}uit-ad--placeholder{{/if}}'>
+        <div class='uit-ad__wrapper'>
+            <div id='dfp-ad--inline{{ id }}'
+                class='js-ad-slot ad-slot ad-slot--inline ad-slot--inline{{ id }}'
+                data-link-name='ad slot inline{{ id }}'
+                data-name='inline{{ id }}'
+                data-mobile="1,1|2,2|300,250|fluid"></div>
+        </div>
+    </div>
+{{/if}}

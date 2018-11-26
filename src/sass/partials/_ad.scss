@@ -1,0 +1,64 @@
+.uit-ad {
+    padding: 12px 0 24px;
+
+    @include mq($until: desktop) {
+        display: flex;
+        justify-content: center;
+    }
+
+    .ad-slot {
+        margin: 0;
+    }
+}
+
+.uit-ad--mobile {
+    @include mq(desktop) {
+        display: none;
+    }
+}
+
+.uit-ad--desktop {
+    display: flex;
+    justify-content: center;
+
+    @include mq($until: desktop) {
+        display: none;
+    }
+}
+
+.uit-ad--placeholder {
+    .uit-ad__wrapper {
+        width: 300px;
+        height: 280px; // + 30px for the label
+        background-color: red;
+        display: inline-block;
+
+        &:before {
+            content: 'Advertisement';
+            display: block;
+            width: 100%;
+            height: 30px;
+            padding-top: 2px;
+            padding-left: 4px;
+            box-sizing: border-box;
+            border-top: 1px solid $c-light-grey;
+            font-family: 'Guardian Sans Web';
+            font-size: 14px;
+            color: $c-dark-grey;
+            background-color: $c-off-white;
+        }
+    }
+
+    &.uit-ad--desktop .uit-ad__wrapper {
+        width: 900px;
+    }
+}
+
+.uit-body .uit-ad {
+    @include mq(desktop) {
+        display: block;
+        float: right;
+        padding-left: 20px;
+        padding-top: 0;
+    }
+}
