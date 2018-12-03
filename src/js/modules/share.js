@@ -1,8 +1,9 @@
-const pageUrl = window.location.href.split('#')[0],
-    shareCopy = $('meta[property=og\\:title]').attr('content');
+const pageUrl = window.location.href.split('#')[0];
+let shareCopy;
 
 export default {
     init: function() {
+        shareCopy = $('meta[property=og\\:title]').attr('content');
         this.setLinks('.uit-share');
     },
 
