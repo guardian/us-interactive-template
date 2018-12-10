@@ -1,7 +1,11 @@
 US Interactive Template
 ========================
 
-An alternative template and toolchain for creating interactive atoms for the Guardian
+An alternative template and toolchain for creating interactive atoms for the Guardian. Designed purposely to be light and not encumber the developer with too much. It uses SASS for CSS, Rollup for JS and Handlebars for HTML.
+
+## Requirements
+
+[Node JS](https://github.com/creationix/nvm) Version 8.0.0 or above. Works with 11.4.0
 
 ## Installation
 
