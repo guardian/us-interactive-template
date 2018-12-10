@@ -91,7 +91,11 @@ module.exports = {
         handlebars.registerHelper('adId', function(context, options) {
             adId++;
             return adId;
-        })
+        });
+
+        handlebars.registerHelper('handlise', function(string) {
+            return string.replace(/ /g, '-').toLowerCase();
+        });
 
         handlebars.registerHelper('markedCap', function(string) {
             var markedIntro = markdown.toHTML(string);
