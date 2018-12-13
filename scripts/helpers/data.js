@@ -2,7 +2,7 @@ var request = require('sync-request');
 var fs = require('fs-extra');
 var gsjson = require('google-spreadsheet-to-json');
 var deasync = require('deasync');
-var config = require('../../package.json');
+var config = require('../../package.json').config;
 var userHome = require('user-home');
 var keys = require(userHome + '/.gu/interactives.json');
 
@@ -25,7 +25,7 @@ function fetchData(callback) {
 }
 
 function sortResults(data) {
-    if (data.length === 0) {
+    if (data.length === 1) {
         data = data[0]
     } else {
         data = {
