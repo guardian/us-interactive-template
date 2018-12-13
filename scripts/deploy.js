@@ -58,8 +58,6 @@ module.exports = function deploy(buildVersion) {
         });
     });
 
-    console.log('');
-
     var inFlight = 0;
     var loader;
 

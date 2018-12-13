@@ -10,12 +10,11 @@
         "prestart": "npm run compile -- local",
         "start": "node scripts/local.js",
         "log": "node scripts/log.js",
-        "clone": "scripts/mkrepo.sh",
         "postinstall": "node scripts/post-install.js"
     },
     "config": {
         "data": {
-            "id": ""
+            "id": "1A7bJ368Ij7AXEXl580jvBmIotZ-sXEXQpGDaV_vC6Ec"
         },
         "local": {
             "url": "http://localhost",
