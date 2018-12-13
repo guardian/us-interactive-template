@@ -37,14 +37,14 @@ function sortResults() {
 }
 
 function appendConfigDrivenData(config) {
-    data.path = config.specs.deploy === false ? 'http://localhost:' + config.local.port : config.remote.url + '/' + config.remote.path + '/' + config.version;
+    data.path = config.absolutePath
     data.isLocal = !config.specs.deploy;
 
     return data;
 }
 
 module.exports = function getData(config) {
-    console.log(config);
+    data = {};
 
     if (config.data.id !== "") {
         var isDone = false;
@@ -53,7 +53,6 @@ module.exports = function getData(config) {
             data = result;
             data = sortResults();
             // call additional data cleaning functions here
-            data = appendConfigDrivenData(config);
 
             isDone = true;
         });
@@ -63,9 +62,9 @@ module.exports = function getData(config) {
         });
 
         return data;
-    } else {
-        data = {};
-
-        return appendConfigDrivenData(config);
     }
+
+    data = appendConfigDrivenData(config);
+
+    return data;
 };

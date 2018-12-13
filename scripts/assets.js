@@ -8,10 +8,11 @@ var rollup = require('rollup');
 var resolve = require('rollup-plugin-node-resolve');
 var minify = require('rollup-plugin-babel-minify');
 var commonjs = require('rollup-plugin-commonjs');
+var deploy = require('./deploy.js');
 
 module.exports = {
-    js: function(path, fileName, absolutePath, isDeploy) {
-        fs.removeSync(path + '/' + fileName + '.js');
+    js: function(config, fileName) {
+        fs.removeSync(config.path + '/' + fileName + '.js');
         let isDone = false;
 
         (async function () {
@@ -27,7 +28,7 @@ module.exports = {
                 ]
             };
 
-            if (isDeploy) {
+            if (config.specs.deploy) {
                 rollupOptions.plugins.push(minify({
                     comments: false
                 }))
@@ -36,9 +37,9 @@ module.exports = {
             var bundle = await rollup.rollup(rollupOptions);
 
             await bundle.write({
-                file: path + '/' + fileName + '.js',
+                file: config.path + '/' + fileName + '.js',
                 format: 'umd',
-                sourcemap: isDeploy ? false : 'inline'
+                sourcemap: config.specs.deploy ? false : 'inline'
             });
 
             isDone = true;
@@ -49,8 +50,8 @@ module.exports = {
         });
     },
 
-    css: function(path, absolutePath) {
-        fs.removeSync(path + '/main.css');
+    css: function(config) {
+        fs.removeSync(config.path + '/main.css');
 
         var isDone = false,
             css;
@@ -61,7 +62,7 @@ module.exports = {
             if (err) {
                 console.log(err);
             }
-            fs.writeFileSync(path + '/main.css', result.css.toString('utf8').replace(/\{\{ path \}\}/g, absolutePath).replace(/\{\{path\}\}/g, absolutePath));
+            fs.writeFileSync(config.path + '/main.css', result.css.toString('utf8').replace(/\{\{ path \}\}/g, config.absolutePath).replace(/\{\{path\}\}/g, config.absolutePath));
             isDone = true;
             console.log('Updated css!');
         });
@@ -71,8 +72,8 @@ module.exports = {
         });
     },
 
-    html: function(path, data) {
-        fs.removeSync(path + '/main.html');
+    html: function(config) {
+        fs.removeSync(config.path + '/main.html');
 
         handlebars.registerHelper('if_eq', function(a, b, opts) {
             if (a == b) {
@@ -158,33 +159,70 @@ module.exports = {
             handlebars.registerPartial(name, template);
         });
 
-        fs.writeFileSync(path + '/main.html', template(data));
+        fs.writeFileSync(config.path + '/main.html', template(config.data));
         console.log('Updated html!');
     },
 
-    static: function(path) {
-        fs.emptyDirSync(path + '/assets');
-        fs.mkdirsSync(path + '/assets');
-        fs.copySync('src/assets', path + '/assets');
+    static: function(config) {
+        fs.emptyDirSync(config.path + '/assets');
+        fs.mkdirsSync(config.path + '/assets');
+        fs.copySync('src/assets', config.path + '/assets');
         console.log('Updated static assets');
     },
 
-    preview: function(path, isDeploy, assetPath) {
+    preview: function(config) {
         var guardianHtml = fs.readFileSync('./scripts/immersive.html', 'utf8');
         var guardianTemplate = handlebars.compile(guardianHtml);
 
         var compiled = guardianTemplate({
-            'html': fs.readFileSync(path + 'main.html'),
-            'js': fs.readFileSync(path + 'main.js')
+            'html': fs.readFileSync(config.path + 'main.html'),
+            'js': fs.readFileSync(config.path + 'main.js')
         });
 
-        if (isDeploy) {
+        if (config.specs.deploy) {
             var re = new RegExp(assetPath,'g');
             compiled = compiled.replace(re, 'assets');
         }
 
-        fs.writeFileSync(path + '/index.html', compiled);
+        fs.writeFileSync(config.path + '/index.html', compiled);
 
         console.log('Built page preview');
+    },
+
+    finishUp: function(config) {
+        if (config.specs.deploy === false) {
+            this.preview(config);
+        } else if (config.specs.deploy) {
+            fs.emptyDirSync('.deploy');
+            fs.copySync(config.path, '.deploy/' + config.version);
+            fs.writeFileSync('.deploy/' + config.specs.build, config.version);
+            deploy(config.specs.build);
+        }
+
+    },
+
+    compile: function(config) {
+        fs.mkdirsSync(config.path);
+
+        var modified = config.specs.modified;
+
+        if (modified === 'html') {
+            this.html(config);
+        } else if (modified === 'js') {
+            this.js(config, 'main');
+            this.js(config, 'app');
+        } else if (modified === 'css') {
+            this.css(config);
+        } else if (modified === 'static') {
+            this.static(config)
+        } else {
+            this.html(config);
+            this.css(config);
+            this.js(config, 'main');
+            this.js(config, 'app');
+            this.static(config);
+        }
+
+        this.finishUp(config);
     }
 }
