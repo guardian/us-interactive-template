@@ -24,7 +24,7 @@ module.exports = function deploy(buildVersion) {
     var emojic = require("emojic");
 
     var BUCKET = 'gdn-cdn';
-    var config = require( './config.json' );
+    var config = require( '../package.json' ).config;
 
     var BASE_DIR = path.resolve( '.deploy' );
     var MAX_CONCURRENT_UPLOADS = 8;

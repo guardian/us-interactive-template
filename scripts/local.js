@@ -1,7 +1,7 @@
 // dependancies
 var watch = require('node-watch');
 var cmd = require('node-cmd');
-var config = require('../scripts/config.json');
+var config = require('../package.json').config;
 
 // create server
 var bs = require('browser-sync').create();
@@ -37,4 +37,3 @@ watch('src', function(file) {
         console.log('non-watchable file extension changed :' + fileExt);
     }
 });
-

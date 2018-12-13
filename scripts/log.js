@@ -1,5 +1,5 @@
 var request = require('sync-request');
-var config = require('../scripts/config.json');
+var config = require('../package.json').config;
 
 var specs =  {
     'build': process.argv.slice(2)[0] ? process.argv.slice(2)[0] : 'preview'

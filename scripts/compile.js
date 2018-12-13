@@ -2,7 +2,7 @@ var handlebars = require('handlebars');
 var fs = require('fs-extra');
 var cmd = require('node-cmd');
 var deploy = require('./deploy.js');
-var config = require('../scripts/config.json');
+var config = require('../package.json').config;
 var assets = require('../scripts/helpers/assets.js');
 
 var specs =  {

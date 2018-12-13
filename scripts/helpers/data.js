@@ -2,7 +2,7 @@ var request = require('sync-request');
 var fs = require('fs-extra');
 var gsjson = require('google-spreadsheet-to-json');
 var deasync = require('deasync');
-var config = require('../config.json');
+var config = require('../../package.json');
 var userHome = require('user-home');
 var keys = require(userHome + '/.gu/interactives.json');
 
