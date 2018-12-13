@@ -1,20 +1,15 @@
 var fs = require('fs-extra');
 var deploy = require('./deploy.js');
 var config = require('../package.json').config;
-var assets = require('../scripts/helpers/assets.js');
+var assets = require('../scripts/assets.js');
+var data = require('../scripts/data.js');
+    data = data();
 
 var specs =  {
     'deploy': process.argv.slice(2)[0] == 'true' ? true : false,
     'build': process.argv.slice(2)[1] ? process.argv.slice(2)[1] : 'preview',
     'modified': process.argv.slice(2)[2] ? process.argv.slice(2)[2] : 'none'
 };
-
-if (config.data.id !== "") {
-    var getData = require('../scripts/helpers/data.js');
-    var data = getData();
-} else {
-    data = {};
-}
 
 var path = '.build/';
 var version = 'v/' + Date.now();

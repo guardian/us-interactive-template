@@ -38,18 +38,22 @@ function sortResults(data) {
 }
 
 module.exports = function getData() {
-    var isDone = false;
+    if (config.data.id !== "") {
+        var isDone = false;
 
-    fetchData(function(result) {
-        data = result;
-        data = sortResults(data);
+        fetchData(function(result) {
+            data = result;
+            data = sortResults(data);
 
-        isDone = true;
-    });
+            isDone = true;
+        });
 
-    deasync.loopWhile(function() {
-        return !isDone;
-    });
+        deasync.loopWhile(function() {
+            return !isDone;
+        });
 
-    return data;
+        return data;
+    } else {
+        return {};
+    }
 };
