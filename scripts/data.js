@@ -2,15 +2,14 @@ var request = require('sync-request');
 var fs = require('fs-extra');
 var gsjson = require('google-spreadsheet-to-json');
 var deasync = require('deasync');
-var config = require('../../package.json').config;
 var userHome = require('user-home');
 var keys = require(userHome + '/.gu/interactives.json');
 
 var data;
 
-function fetchData(callback) {
+function fetchData(id, callback) {
     gsjson({
-        spreadsheetId: config.data.id,
+        spreadsheetId: id,
         allWorksheets: true,
         credentials: keys.google
     })
@@ -24,7 +23,7 @@ function fetchData(callback) {
     });
 }
 
-function sortResults(data) {
+function sortResults() {
     if (data.length === 1) {
         data = data[0]
     } else {
@@ -37,13 +36,24 @@ function sortResults(data) {
     return data;
 }
 
-module.exports = function getData() {
+function appendConfigDrivenData(config) {
+    data.path = config.specs.deploy === false ? 'http://localhost:' + config.local.port : config.remote.url + '/' + config.remote.path + '/' + config.version;
+    data.isLocal = !config.specs.deploy;
+
+    return data;
+}
+
+module.exports = function getData(config) {
+    console.log(config);
+
     if (config.data.id !== "") {
         var isDone = false;
 
-        fetchData(function(result) {
+        fetchData(config.data.id, function(result) {
             data = result;
-            data = sortResults(data);
+            data = sortResults();
+            // call additional data cleaning functions here
+            data = appendConfigDrivenData(config);
 
             isDone = true;
         });
@@ -54,6 +64,8 @@ module.exports = function getData() {
 
         return data;
     } else {
-        return {};
+        data = {};
+
+        return appendConfigDrivenData(config);
     }
 };

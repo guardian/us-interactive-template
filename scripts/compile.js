@@ -1,22 +1,21 @@
 var fs = require('fs-extra');
 var deploy = require('./deploy.js');
-var config = require('../package.json').config;
 var assets = require('../scripts/assets.js');
 var data = require('../scripts/data.js');
-    data = data();
+var config = require('../package.json').config;
 
-var specs =  {
+config.specs =  {
     'deploy': process.argv.slice(2)[0] == 'true' ? true : false,
     'build': process.argv.slice(2)[1] ? process.argv.slice(2)[1] : 'preview',
     'modified': process.argv.slice(2)[2] ? process.argv.slice(2)[2] : 'none'
 };
 
-var path = '.build/';
-var version = 'v/' + Date.now();
-    data.path = specs.deploy === false ? 'http://localhost:' + config.local.port : config.remote.url + '/' + config.remote.path + '/' + version;
-    data.isLocal = !specs.deploy;
+config.path = '.build/';
+config.version = 'v/' + Date.now();
 
-fs.mkdirsSync(path);
+data = data(config);
+
+fs.mkdirsSync(config.path);
 
 if (specs.modified === 'html') {
     assets.html(path, data);
