@@ -42,10 +42,18 @@
     font-style: italic;
     font-weight: 400;
     color: $c-red;
+    margin: 0;
 
     a {
         font-style: normal;
         font-weight: bold;
         color: $c-red;
     }
+}
+
+.uit-header__dateline {
+    font-family: 'Guardian Sans Web';
+    font-size: 14px;
+    color: $c-dark-grey;
+    margin: 2px 0 12px 0;
 }
