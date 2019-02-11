@@ -39,6 +39,7 @@
     "devDependencies": {
         "aws-sdk": "^2.5.0",
         "browser-sync": "^2.24.6",
+        "browser-sync-reuse-tab": "^1.0.3",
         "deasync": "^0.1.9",
         "emojic": "^1.1.14",
         "filesize": "^3.3.0",

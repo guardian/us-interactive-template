@@ -4,17 +4,20 @@ var cmd = require('node-cmd');
 var config = require('../package.json').config;
 
 // create server
-var bs = require('browser-sync').create();
-    bs.init({
-        server: './.build',
-        port: config.local.port
-    });
+var browserSync = require('browser-sync').create();
+var browserSyncReuseTab = require('browser-sync-reuse-tab')(browserSync);
 
-    bs.watch('./.build/*.css', function(event, file) {
-        if (event === 'change') {
-            bs.reload('*.css');
-        }
-    });
+browserSync.init({
+    server: './.build',
+    port: config.local.port,
+    open: false
+}, browserSyncReuseTab);
+
+browserSync.watch('./.build/*.css', function(event, file) {
+    if (event === 'change') {
+        browserSync.reload('*.css');
+    }
+});
 
 // watch src files
 watch('src', function(file) {
