@@ -17,7 +17,7 @@
     border-radius: 20px;
     float: left;
     margin-right: 4px;
-    border: 1px solid $c-red;
+    border: 1px solid $c-light-grey;
 
     .uit-icon {
         fill: $c-red;
@@ -28,6 +28,7 @@
 
     &:hover {
         background-color: $c-red;
+        border-color: $c-red;
 
         .uit-icon {
             fill: $c-white;
