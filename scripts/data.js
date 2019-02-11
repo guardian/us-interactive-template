@@ -60,8 +60,6 @@ module.exports = function getData(config) {
         deasync.loopWhile(function() {
             return !isDone;
         });
-
-        return data;
     }
 
     data = appendConfigDrivenData(config);
