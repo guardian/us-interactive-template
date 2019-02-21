@@ -3,11 +3,12 @@ var fs = require('fs-extra');
 var gsjson = require('google-spreadsheet-to-json');
 var deasync = require('deasync');
 var userHome = require('user-home');
-var keys = require(userHome + '/.gu/interactives.json');
 
 var data;
 
 function fetchData(id, callback) {
+    var keys = require(userHome + '/.gu/interactives.json');
+
     gsjson({
         spreadsheetId: id,
         allWorksheets: true,
