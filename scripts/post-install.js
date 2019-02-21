@@ -11,6 +11,7 @@ if (package.config.remote.path === 'atoms/2018/01/us-interactive-template') {
     var year = now.getFullYear();
 
     if (projectName !== 'us-template') {
+        console.log('changing remote destination');
         package.config.remote.path = 'atoms/' + year + '/' + month + '/' + projectName;
         fs.writeFileSync('package.json', JSON.stringify(package, null, 4));
     }
