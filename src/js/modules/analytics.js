@@ -1,24 +1,15 @@
-const article = 'A good\, short\, descriptor of the interactive';
-let hasAnalytics = false;
-let gaTracker;
+var initialized = false;
 
 export default {
-    init: function() {
-        this.checkForAnalytics();
-    },
-
-    checkForAnalytics: function() {
+    event: function(category, action) {
         if (window.ga) {
-            gaTracker = window.guardian.config.googleAnalytics.trackers.editorial;
-            hasAnalytics = true;
-        }
-    },
+            if (!initialized) {
+                window.ga('create', 'UA-78705427-1', 'auto');
+                window.ga('set', 'dimension3', 'theguardian.com');
+                initialized = true;
+            }
 
-    event: function() {
-        if (hasAnalytics) {
-            window.ga(gaTracker + '.send', 'event', category, action, article + ' | ' + label, value, {
-                nonInteraction: true
-            });
+            window.ga('send', 'event', 'interactives', category, action);
         }
     }
 };
