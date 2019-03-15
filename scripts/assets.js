@@ -6,7 +6,7 @@ var glob = require('glob-fs')({ gitignore: true });
 var markdown = require('markdown').markdown;
 var rollup = require('rollup');
 var resolve = require('rollup-plugin-node-resolve');
-var minify = require('rollup-plugin-babel-minify');
+var terser = require('rollup-plugin-terser').terser;
 var commonjs = require('rollup-plugin-commonjs');
 var deploy = require('./deploy.js');
 
@@ -29,9 +29,7 @@ module.exports = {
             };
 
             if (config.specs.deploy) {
-                rollupOptions.plugins.push(minify({
-                    comments: false
-                }))
+                rollupOptions.plugins.push(terser());
             }
 
             var bundle = await rollup.rollup(rollupOptions);
