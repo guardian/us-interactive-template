@@ -169,12 +169,13 @@ module.exports = {
     },
 
     preview: function(config) {
-        var guardianHtml = fs.readFileSync('./scripts/immersive.html', 'utf8');
+        var guardianHtml = fs.readFileSync('./scripts/' + config.template + '.html', 'utf8');
         var guardianTemplate = handlebars.compile(guardianHtml);
 
         var compiled = guardianTemplate({
             'html': fs.readFileSync(config.path + 'main.html'),
-            'js': fs.readFileSync(config.path + 'main.js')
+            'js': fs.readFileSync(config.path + 'main.js'),
+            'body': fs.readFileSync('./scripts/hybrid-body.html')
         });
 
         if (config.specs.deploy) {

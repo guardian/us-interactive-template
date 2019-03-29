@@ -24,7 +24,8 @@
             "url": "https://interactive.guim.co.uk",
             "path": "atoms/2018/01/us-interactive-template",
             "bucket": "gdn-cdn"
-        }
+        },
+        "template": "immersive"
     },
     "repository": {
         "type": "git",
